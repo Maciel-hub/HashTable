@@ -1,0 +1,60 @@
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void menu(){
+        System.out.println("1 -- Lista telefonica --");
+        System.out.println("2 -- Cadastrar --");
+        System.out.println("3 -- Buscar --");
+        System.out.println("4 -- Sair --");
+        System.out.print("Opcao: ");
+    }
+
+    public static void main(String[] args) {
+        int opcao, numero;
+        String nome, busca;
+        Hashtable<String, Integer> lista = new Hashtable<String, Integer>();
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            menu();
+            opcao = sc.nextInt();
+            switch(opcao){
+                case 1:
+                    System.out.println("-- Lista de Contatos --");
+                    for(Map.Entry<String, Integer> list : lista.entrySet()) {
+                        System.out.println("Nome: " + list.getKey() + " | Numero: " + list.getValue());
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("-- Cadastro --");
+                    System.out.print("Nome: ");
+                    nome = sc.next();
+                    System.out.print("Numero: ");
+                    numero = sc.nextInt();
+                    lista.put(nome, numero);
+                    break;
+
+                case 3:
+                    System.out.println("-- Busca --");
+                    System.out.print("Nome: ");
+                    nome = sc.next();
+
+                    if(lista.get(nome) == null){
+                        System.out.println("-- Nome nao encontrado! --");
+                    } else{
+                        System.out.println("Numero: "+ lista.get(nome));
+                    }
+                    break;
+
+                default:
+                    System.out.println("-- ERRO! Opcao invalida --");
+                case 4: 
+                    System.out.println("-- Programa Encerrado --");
+            }
+        } while (opcao != 4);
+    }
+}
